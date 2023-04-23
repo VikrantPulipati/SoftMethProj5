@@ -6,4 +6,12 @@
 
     <string name="your_order">Your Order</string>
     <string name="store_orders">Store Orders</string>
+
+    <string name="choose_donut">Choose a Donut Flavor:</string>
+
+    <string name="subtotal">Subtotal: %1$f</string>
+
+    <string name="add">Add</string>
+    <string name="add_to_order">Add to Order</string>
+    <string name="remove">Remove</string>
 </resources>
