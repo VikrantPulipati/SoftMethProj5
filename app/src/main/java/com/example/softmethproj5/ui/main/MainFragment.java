@@ -16,10 +16,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.softmethproj5.MainActivity;
 import com.example.softmethproj5.R;
 import com.example.softmethproj5.databinding.FragmentMainBinding;
+import com.example.softmethproj5.ui.orderDonut.OrderDonutsFragment;
+
+import java.util.Objects;
 
 public class MainFragment extends Fragment {
 
@@ -62,13 +66,14 @@ public class MainFragment extends Fragment {
     }
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        mViewModel = new ViewModelProvider(this).get(MainViewModel.class);
-
-
-
-        // TODO: Use the ViewModel
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        binding.btOrderDonut.setOnClickListener(view1 -> requireActivity().getSupportFragmentManager().beginTransaction()
+                .replace(R.id.container, OrderDonutsFragment.newInstance())
+                .addToBackStack(null)
+                .commit());
     }
+
+
 
 }
