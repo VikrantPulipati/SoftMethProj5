@@ -43,8 +43,11 @@ public class MainFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         binding.btOrderDonut.setOnClickListener(view1 -> requireActivity().getSupportFragmentManager().beginTransaction()
-                .replace(R.id.container, new OrderDonutsFragment())
-                .commitNow());
+                .replace(R.id.container, OrderDonutsFragment.newInstance())
+                .addToBackStack(null)
+                .commit());
     }
+
+
 
 }
