@@ -6,4 +6,30 @@
 
     <string name="your_order">Your Order</string>
     <string name="store_orders">Store Orders</string>
+    <string name="cup_size">Cup Size</string>
+    <string name="short_">Short</string>
+    <string name="tall">Tall</string>
+    <string name="grande">Grande</string>
+    <string name="venti">Venti</string>
+    <string name="add_ins">Add-Ins</string>
+    <string name="sweet_cream">Sweet Cream</string>
+    <string name="irish_cream">Irish Cream</string>
+    <string name="mocha">Mocha</string>
+    <string name="french_vanilla">French Vanilla</string>
+    <string name="caramel">Caramel</string>
+    <string name="how_many_cups">How Many Cups?</string>
+    <string name="add">Add</string>
+    <string name="remove">Remove</string>
+    <string name="add_to_ordering_basket">Add To Ordering Basket!</string>
+    <string name="subtotal">Subtotal: %1$f</string>
+    <string name="items_added">Items Added</string>
+    <string-array name="numbers">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+    </string-array>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
