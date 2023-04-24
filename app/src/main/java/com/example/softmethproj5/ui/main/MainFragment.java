@@ -1,6 +1,7 @@
 package com.example.softmethproj5.ui.main;
 
 import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
@@ -9,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,13 +25,22 @@ import java.util.Objects;
 
 public class MainFragment extends Fragment {
 
-    private MainViewModel mViewModel;
+    private MainViewModel viewModel;
 
     public static MainFragment newInstance() {
         return new MainFragment();
     }
 
     FragmentMainBinding binding;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        viewModel = new ViewModelProvider(requireActivity()).get(MainViewModel.class);
+
+        Log.d("TAG", "WORKING");
+    }
 
     @Nullable
     @Override
@@ -47,7 +58,5 @@ public class MainFragment extends Fragment {
                 .addToBackStack(null)
                 .commit());
     }
-
-
 
 }
