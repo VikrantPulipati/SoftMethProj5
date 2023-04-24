@@ -52,4 +52,23 @@ public class Donut extends MenuItem {
     public String toString() {
         return this.flavor;
     }
+
+    /**
+     * Compare two Donut objects
+     * @param obj the Donut you wish to compare
+     * @return true if the two Donut objects have the same flavor, false otherwise.
+     */
+    @Override
+    public boolean equals(Object obj) {
+        return (obj instanceof Donut) && (this.flavor.equals(((Donut)obj).getFlavor()));
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        for (int i = 0; i < this.flavor.length(); i++) {
+            hash += (((i+1)*this.flavor.charAt(i)) << i);
+        }
+        return hash;
+    }
 }

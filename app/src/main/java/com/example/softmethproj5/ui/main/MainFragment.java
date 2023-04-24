@@ -3,6 +3,7 @@ package com.example.softmethproj5.ui.main;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.content.DialogInterface;
@@ -12,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,7 +29,7 @@ import java.util.Objects;
 
 public class MainFragment extends Fragment {
 
-    private MainViewModel mViewModel;
+    private MainViewModel viewModel;
 
     public static MainFragment newInstance() {
         return new MainFragment();
@@ -35,12 +37,20 @@ public class MainFragment extends Fragment {
 
     FragmentMainBinding binding;
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        viewModel = new ViewModelProvider(requireActivity()).get(MainViewModel.class);
+
+        Log.d("TAG", "WORKING");
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_main, container, false);
-        View view = binding.getRoot();
         Button coffeeButton = (Button) binding.btOrderCoffee;
         coffeeButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,15 +64,7 @@ public class MainFragment extends Fragment {
                 fragmentTransaction2.commit();
             }
         });
-        return view;
-    }
-
-    @Override
-    // is this method necessary? Difference between onCreate and onCreateView?
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-
-
-        super.onCreate(savedInstanceState);
+        return binding.getRoot();
     }
 
     @Override
