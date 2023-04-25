@@ -74,9 +74,9 @@ public class DonutFlavorAdapter extends RecyclerView.Adapter<DonutFlavorAdapter.
             });
 
             binding.btAddToBasket.setOnClickListener(addButtonListener);
+            binding.tvFlavorName.setText(flavor.first);
+            binding.ivDonutImage.setImageDrawable((flavor.second == null)? null : AppCompatResources.getDrawable(binding.getRoot().getContext(), flavor.second));
 
-            binding.setVariable(BR.flavorName, flavor.first);
-            if (flavor.second != null) binding.setVariable(BR.flavorImage, AppCompatResources.getDrawable(context, flavor.second));
             binding.executePendingBindings();
         }
     }
