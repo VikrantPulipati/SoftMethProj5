@@ -101,20 +101,20 @@ public class OrderDonutsFragment extends Fragment {
 
     private List<Pair<String, Integer>> getFlavorList () {
         return List.of(
-                new Pair<>(Donut.FLAVOR_JELLY, null),
-                new Pair<>(Donut.FLAVOR_GLAZED, null),
-                new Pair<>(Donut.FLAVOR_POWDERED, null),
-                new Pair<>(Donut.FLAVOR_SUGAR, null),
-                new Pair<>(Donut.FLAVOR_PUMPKIN, null),
-                new Pair<>(Donut.FLAVOR_LEMON, null),
+                new Pair<>(Donut.FLAVOR_JELLY, R.drawable.flavor_jelly),
+                new Pair<>(Donut.FLAVOR_GLAZED, R.drawable.flavor_glazed),
+                new Pair<>(Donut.FLAVOR_POWDERED, R.drawable.flavor_powdered),
+                new Pair<>(Donut.FLAVOR_SUGAR, R.drawable.flavor_sugar),
+                new Pair<>(Donut.FLAVOR_PUMPKIN, R.drawable.flavor_pumpkin),
+                new Pair<>(Donut.FLAVOR_LEMON, R.drawable.flavor_lemon),
 
-                new Pair<>(Donut.FLAVOR_BUTTERNUT, null),
-                new Pair<>(Donut.FLAVOR_BLUEBERRY, null),
-                new Pair<>(Donut.FLAVOR_CINNAMON, null),
+                new Pair<>(Donut.FLAVOR_BUTTERNUT, R.drawable.flavor_butternut),
+                new Pair<>(Donut.FLAVOR_BLUEBERRY, R.drawable.flavor_blueberry),
+                new Pair<>(Donut.FLAVOR_CINNAMON, R.drawable.flavor_cinnamon),
 
                 new Pair<>(Donut.FLAVOR_CHOCOLATE, R.drawable.flavor_chocolate),
                 new Pair<>(Donut.FLAVOR_VANILLA, R.drawable.flavor_vanilla),
-                new Pair<>(Donut.FLAVOR_COFFEE, R.drawable.flavor_cinnamon)
+                new Pair<>(Donut.FLAVOR_COFFEE, R.drawable.flavor_coffee)
         );
     }
 }
