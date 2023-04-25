@@ -28,7 +28,7 @@ public class YourOrderAdapter extends RecyclerView.Adapter<YourOrderAdapter.Your
 
     public YourOrderAdapter(MainViewModel viewModel) {
         this.viewModel = viewModel;
-        currentOrder = viewModel.getCurrentOrder();
+        currentOrder = viewModel.getCurrentOrder().getValue();
         updateItemList();
     }
 

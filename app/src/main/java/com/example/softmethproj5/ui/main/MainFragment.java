@@ -24,12 +24,12 @@ import com.example.softmethproj5.MainActivity;
 import com.example.softmethproj5.R;
 import com.example.softmethproj5.databinding.FragmentMainBinding;
 import com.example.softmethproj5.ui.orderDonut.OrderDonutsFragment;
+import com.example.softmethproj5.ui.yourOrder.YourOrderFragment;
 
 import java.util.Objects;
 
 public class MainFragment extends Fragment {
 
-    private MainViewModel viewModel;
 
     public static MainFragment newInstance() {
         return new MainFragment();
@@ -37,45 +37,28 @@ public class MainFragment extends Fragment {
 
     FragmentMainBinding binding;
 
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        viewModel = new ViewModelProvider(requireActivity()).get(MainViewModel.class);
-
-        Log.d("TAG", "WORKING");
-    }
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_main, container, false);
-        Button coffeeButton = (Button) binding.btOrderCoffee;
-        coffeeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FragmentManager fragmentManager2 = getFragmentManager();
-                FragmentTransaction fragmentTransaction2 = fragmentManager2.beginTransaction();
-                Fragment coffeeViewFragment = new CoffeeView();
-                fragmentTransaction2.addToBackStack("mainToCoffee");
-                fragmentTransaction2.hide(MainFragment.this);
-                fragmentTransaction2.add(android.R.id.content, coffeeViewFragment);
-                fragmentTransaction2.commit();
-            }
-        });
         return binding.getRoot();
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        binding.btOrderDonut.setOnClickListener(view1 -> requireActivity().getSupportFragmentManager().beginTransaction()
-                .replace(R.id.container, OrderDonutsFragment.newInstance())
-                .addToBackStack(null)
-                .commit());
+        binding.btOrderDonut.setOnClickListener(view1 -> navigateMainToFragment(OrderDonutsFragment.newInstance()));
+        binding.btOrderCoffee.setOnClickListener(view1 -> navigateMainToFragment(CoffeeView.newInstance("blah", "blah")));
+        binding.btYourOrder.setOnClickListener(view1 -> navigateMainToFragment(YourOrderFragment.newInstance()));
     }
 
+    private void navigateMainToFragment (Fragment fragment) {
+        requireActivity().getSupportFragmentManager().beginTransaction()
+                .replace(R.id.container, fragment)
+                .addToBackStack(null)
+                .commit();
+    }
 
 
 }

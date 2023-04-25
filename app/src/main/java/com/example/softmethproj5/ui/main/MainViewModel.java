@@ -22,7 +22,7 @@ public class MainViewModel extends ViewModel {
 
     private final MutableLiveData<Map<MenuItem, Integer>> currentScreenBasket = new MutableLiveData<>(new HashMap<>());
 
-    private Order currentOrder = new Order();
+    private final MutableLiveData<Order> currentOrder = new MutableLiveData<>(new Order());
 
     private final MutableLiveData<List<Order>> storeOrders = new MutableLiveData<>(new ArrayList<>());
 
@@ -32,7 +32,7 @@ public class MainViewModel extends ViewModel {
     public LiveData<Map<MenuItem, Integer>> getCurrentScreenBasket () { return currentScreenBasket; }
 
     @NonNull
-    public Order getCurrentOrder () { return currentOrder; }
+    public LiveData<Order> getCurrentOrder () { return currentOrder; }
 
     @NonNull
     public LiveData<List<Order>> getStoreOrders () { return storeOrders; }
@@ -68,22 +68,25 @@ public class MainViewModel extends ViewModel {
     }
 
     public void addCurrentScreenBasketToOrder () {
-        Order order = requireNonNull(this.currentOrder);
+        Order order = requireNonNull(this.currentOrder.getValue());
         Map<MenuItem, Integer> currentScreenBasket = requireNonNull(this.currentScreenBasket.getValue());
         order.addItemsFromBasket(currentScreenBasket);
         this.currentScreenBasket.setValue(new HashMap<>());
         this.currentScreenSubtotal.setValue(0.0);
+        this.currentOrder.setValue(order);
     }
 
     public void removeFromOrder (MenuItem menuItem) {
-        Order order = requireNonNull(this.currentOrder);
+        Order order = requireNonNull(this.currentOrder.getValue());
         order.removeItem(menuItem);
+        this.currentOrder.setValue(order);
     }
 
     public void placeOrder () {
         List<Order> orders = requireNonNull(storeOrders.getValue());
-        orders.add(currentOrder);
-        currentOrder = new Order();
+        orders.add(currentOrder.getValue());
+        this.storeOrders.setValue(orders);
+        this.currentOrder.setValue(new Order());
     }
 
     public void cancelOrder (int index) {

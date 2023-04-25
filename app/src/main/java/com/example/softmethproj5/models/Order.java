@@ -53,7 +53,6 @@ public class Order extends BaseObservable {
      * Returns a Map containing the order items.
      * @return a Map containing the order items.
      */
-    @Bindable
     public Map<MenuItem, Integer> getItems() {
         return items;
     }
@@ -76,13 +75,11 @@ public class Order extends BaseObservable {
             if (items.containsKey(menuItem)) items.put(menuItem, items.get(menuItem)+basket.get(menuItem));
             else items.put(menuItem, basket.get(menuItem));
         }
-        notifyPropertyChanged(BR.items);
         calculateOrderTotal();
     }
 
     public void removeItem (MenuItem menuItem) {
         this.items.remove(menuItem);
-        notifyPropertyChanged(BR.items);
         calculateOrderTotal();
     }
 

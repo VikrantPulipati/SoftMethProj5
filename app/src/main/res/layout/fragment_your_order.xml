@@ -15,26 +15,76 @@
         android:layout_height="match_parent"
         tools:context="ui.yourOrder.YourOrderFragment">
 
-
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_order_items"
             android:layout_width="0dp"
-            android:layout_height="473dp"
+            android:layout_height="0dp"
             android:layout_marginStart="20dp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="20dp"
+            android:layout_marginBottom="20dp"
+            app:layout_constraintBottom_toTopOf="@+id/tv_order_subtotal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView"
-            tools:listitem="@layout/basket_list_item"/>
+            tools:listitem="@layout/basket_list_item" />
 
         <TextView
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:text="@string/your_order"
+            android:text="@{String.format(@string/order_number, order.orderNumber)}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Order Number: #" />
+
+        <Button
+            android:id="@+id/bt_place_order"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:text="@string/place_order"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_order_subtotal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:text="@{String.format(@string/order_total, order.subtotal)}"
+            app:layout_constraintBottom_toTopOf="@+id/tv_sales_tax"
+            app:layout_constraintEnd_toEndOf="@+id/tv_sales_tax"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@+id/tv_sales_tax"
+            tools:text="Subtotal: $0.00"/>
+
+        <TextView
+            android:id="@+id/tv_sales_tax"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:text="@{String.format(@string/order_total, order.salesTax)}"
+            app:layout_constraintBottom_toTopOf="@+id/tv_order_total"
+            app:layout_constraintEnd_toEndOf="@+id/tv_order_total"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@+id/tv_order_total"
+            tools:text="Sales Tax: $0.00"/>
+
+        <TextView
+            android:id="@+id/tv_order_total"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:text="@{String.format(@string/order_total, order.orderTotal)}"
+            app:layout_constraintBottom_toTopOf="@+id/bt_place_order"
+            app:layout_constraintEnd_toEndOf="@+id/bt_place_order"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@+id/bt_place_order"
+            tools:text="Order Total: $0.00"/>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

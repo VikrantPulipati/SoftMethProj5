@@ -2,17 +2,28 @@ package com.example.softmethproj5.ui.yourOrder;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.softmethproj5.R;
 import com.example.softmethproj5.databinding.FragmentYourOrderBinding;
+import com.example.softmethproj5.models.Order;
 import com.example.softmethproj5.ui.adapters.BasketAdapter;
 import com.example.softmethproj5.ui.adapters.YourOrderAdapter;
+import com.example.softmethproj5.ui.main.MainFragment;
 import com.example.softmethproj5.ui.main.MainViewModel;
+
+import java.util.Objects;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -43,6 +54,35 @@ public class YourOrderFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_your_order, container, false);
+        viewModel = new ViewModelProvider(requireActivity()).get(MainViewModel.class);
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_your_order, container, false);
+        binding.setLifecycleOwner(this);
+        binding.setOrder(viewModel.getCurrentOrder().getValue());
+        return binding.getRoot();
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        viewModel.getCurrentOrder().observe(getViewLifecycleOwner(), order -> adapter.updateItemList());
+
+        binding.btPlaceOrder.setOnClickListener(view1 -> {
+            if (Objects.requireNonNull(viewModel.getCurrentOrder().getValue()).getItems().isEmpty()) {
+                Toast.makeText(requireContext(), "No items to order.", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            viewModel.placeOrder();
+            requireActivity().getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.container, MainFragment.newInstance()).commit();
+        });
+
+        setUpBasketRecycler();
+
+    }
+
+    private void setUpBasketRecycler () {
+        binding.rvOrderItems.setLayoutManager(new LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false));
+        adapter = new YourOrderAdapter(viewModel);
+        binding.rvOrderItems.setAdapter(adapter);
     }
 }

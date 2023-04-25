@@ -14,6 +14,7 @@ import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.softmethproj5.R;
 import com.example.softmethproj5.databinding.FragmentOrderDonutsBinding;
@@ -72,6 +73,10 @@ public class OrderDonutsFragment extends Fragment {
         setUpDonutBasketRecycler();
 
         binding.btAddToOrder.setOnClickListener(view1 -> {
+            if (Objects.requireNonNull(viewModel.getCurrentScreenBasket().getValue()).isEmpty()) {
+                Toast.makeText(requireContext(), "Basket is empty.", Toast.LENGTH_SHORT).show();
+                return;
+            }
             viewModel.addCurrentScreenBasketToOrder();
             requireActivity().getSupportFragmentManager().beginTransaction()
                     .replace(R.id.container, MainFragment.newInstance()).commit();
@@ -94,7 +99,7 @@ public class OrderDonutsFragment extends Fragment {
         binding.rvDonutBasket.setLayoutManager(new LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false));
         basketAdapter = new BasketAdapter(viewModel);
         binding.rvDonutBasket.setAdapter(basketAdapter);
-        viewModel.getCurrentScreenBasket().observe(getViewLifecycleOwner(), menuItemIntegerMap -> ((BasketAdapter) Objects.requireNonNull(binding.rvDonutBasket.getAdapter())).updateItemList());
+        viewModel.getCurrentScreenBasket().observe(getViewLifecycleOwner(), menuItemIntegerMap -> basketAdapter.updateItemList());
     }
 
     private List<Pair<String, Integer>> getFlavorList () {
