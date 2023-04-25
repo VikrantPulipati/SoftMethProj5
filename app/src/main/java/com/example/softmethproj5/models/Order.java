@@ -1,14 +1,11 @@
 package com.example.softmethproj5.models;
 
-import android.annotation.SuppressLint;
-import android.view.Menu;
-
 import androidx.annotation.NonNull;
 import androidx.databinding.BaseObservable;
 import androidx.databinding.Bindable;
 
 import com.example.softmethproj5.BR;
-import com.example.softmethproj5.MainActivity;
+import com.example.softmethproj5.ui.MainActivity;
 
 import java.util.HashMap;
 import java.util.Locale;
@@ -18,6 +15,7 @@ import java.util.Map;
  * The Order class contains information on a user's order.
  * This includes order number, order items, and order costs.
  */
+@SuppressWarnings("ConstantConditions")
 public class Order extends BaseObservable {
 
     private static final double SALES_TAX = 0.06625;
@@ -102,12 +100,11 @@ public class Order extends BaseObservable {
     @NonNull
     @Override
     public String toString() {
-        StringBuilder output = new StringBuilder(String.format(Locale.getDefault(), "Order #%d:\n", this.orderNumber));
+        StringBuilder output = new StringBuilder();
         for (MenuItem item : items.keySet()) {
             output.append(String.format(Locale.getDefault(), MainActivity.LIST_VIEW_STRING_FORMAT, items.get(item), item.toString()));
             output.append("\n");
         }
-        output.append(String.format("TOTAL: %s", MainActivity.DOLLARS_FORMAT.format(this.getOrderTotal())));
-        return output.toString();
+        return output.toString().trim();
     }
 }

@@ -6,7 +6,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -19,14 +18,12 @@ import android.widget.Toast;
 import com.example.softmethproj5.R;
 import com.example.softmethproj5.databinding.FragmentOrderDonutsBinding;
 import com.example.softmethproj5.models.Donut;
-import com.example.softmethproj5.models.MenuItem;
 import com.example.softmethproj5.ui.adapters.BasketAdapter;
 import com.example.softmethproj5.ui.adapters.DonutFlavorAdapter;
 import com.example.softmethproj5.ui.main.MainFragment;
-import com.example.softmethproj5.ui.main.MainViewModel;
+import com.example.softmethproj5.ui.MainViewModel;
 
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 
 /**

@@ -13,13 +13,14 @@ import com.example.softmethproj5.R;
 import com.example.softmethproj5.databinding.BasketListItemBinding;
 import com.example.softmethproj5.models.MenuItem;
 import com.example.softmethproj5.models.Order;
-import com.example.softmethproj5.ui.main.MainViewModel;
+import com.example.softmethproj5.ui.MainViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
 
+@SuppressWarnings("ConstantConditions")
 public class YourOrderAdapter extends RecyclerView.Adapter<YourOrderAdapter.YourOrderViewHolder> {
 
     private final MainViewModel viewModel;
@@ -41,7 +42,11 @@ public class YourOrderAdapter extends RecyclerView.Adapter<YourOrderAdapter.Your
     @NonNull
     @Override
     public YourOrderViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new YourOrderAdapter.YourOrderViewHolder(DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), R.layout.basket_list_item, parent, false));
+        return new YourOrderViewHolder(
+                DataBindingUtil.inflate(
+                        LayoutInflater.from(parent.getContext()),
+                        R.layout.basket_list_item, parent,
+                        false));
     }
 
     @Override

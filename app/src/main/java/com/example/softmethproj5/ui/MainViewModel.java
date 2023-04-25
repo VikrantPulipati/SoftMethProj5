@@ -1,4 +1,4 @@
-package com.example.softmethproj5.ui.main;
+package com.example.softmethproj5.ui;
 
 import static java.util.Objects.requireNonNull;
 
@@ -18,6 +18,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@SuppressWarnings("ConstantConditions")
 public class MainViewModel extends ViewModel {
 
     private final MutableLiveData<Map<MenuItem, Integer>> currentScreenBasket = new MutableLiveData<>(new HashMap<>());

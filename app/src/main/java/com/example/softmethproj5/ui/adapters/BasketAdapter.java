@@ -1,5 +1,7 @@
 package com.example.softmethproj5.ui.adapters;
 
+import static java.util.Objects.requireNonNull;
+
 import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,13 +14,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.softmethproj5.R;
 import com.example.softmethproj5.databinding.BasketListItemBinding;
 import com.example.softmethproj5.models.MenuItem;
-import com.example.softmethproj5.ui.main.MainViewModel;
+import com.example.softmethproj5.ui.MainViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
-import java.util.Objects;
 
+@SuppressWarnings("ConstantConditions")
 public class BasketAdapter extends RecyclerView.Adapter<BasketAdapter.BasketViewHolder> {
 
     private final MainViewModel viewModel;
@@ -31,7 +33,7 @@ public class BasketAdapter extends RecyclerView.Adapter<BasketAdapter.BasketView
 
     @SuppressLint("NotifyDataSetChanged")
     public void updateItemList () {
-        itemList = new ArrayList<>(Objects.requireNonNull(viewModel.getCurrentScreenBasket().getValue()).keySet());
+        itemList = new ArrayList<>(requireNonNull(viewModel.getCurrentScreenBasket().getValue()).keySet());
         notifyDataSetChanged();
     }
 
@@ -45,7 +47,7 @@ public class BasketAdapter extends RecyclerView.Adapter<BasketAdapter.BasketView
     public void onBindViewHolder(@NonNull BasketViewHolder holder, int position) {
         View.OnClickListener removeListener = view -> viewModel.removeItemFromBasket(itemList.get(holder.getAdapterPosition()));
         MenuItem item = itemList.get(holder.getAdapterPosition());
-        holder.bind(item.toString(), Objects.requireNonNull(viewModel.getCurrentScreenBasket().getValue()).get(item), removeListener);
+        holder.bind(item.toString(), requireNonNull(viewModel.getCurrentScreenBasket().getValue()).get(item), removeListener);
     }
 
     @Override

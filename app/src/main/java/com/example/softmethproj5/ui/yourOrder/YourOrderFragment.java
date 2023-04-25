@@ -6,7 +6,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -17,11 +16,9 @@ import android.widget.Toast;
 
 import com.example.softmethproj5.R;
 import com.example.softmethproj5.databinding.FragmentYourOrderBinding;
-import com.example.softmethproj5.models.Order;
-import com.example.softmethproj5.ui.adapters.BasketAdapter;
 import com.example.softmethproj5.ui.adapters.YourOrderAdapter;
 import com.example.softmethproj5.ui.main.MainFragment;
-import com.example.softmethproj5.ui.main.MainViewModel;
+import com.example.softmethproj5.ui.MainViewModel;
 
 import java.util.Objects;
 
@@ -52,7 +49,7 @@ public class YourOrderFragment extends Fragment {
     public static YourOrderFragment newInstance() { return new YourOrderFragment(); }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         viewModel = new ViewModelProvider(requireActivity()).get(MainViewModel.class);
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_your_order, container, false);

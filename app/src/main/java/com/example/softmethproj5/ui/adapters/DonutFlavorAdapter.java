@@ -13,11 +13,10 @@ import androidx.appcompat.content.res.AppCompatResources;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.softmethproj5.BR;
 import com.example.softmethproj5.R;
 import com.example.softmethproj5.databinding.DonutFlavorChoiceItemBinding;
 import com.example.softmethproj5.models.Donut;
-import com.example.softmethproj5.ui.main.MainViewModel;
+import com.example.softmethproj5.ui.MainViewModel;
 
 import java.util.List;
 

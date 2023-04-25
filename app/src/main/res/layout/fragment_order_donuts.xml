@@ -6,7 +6,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.example.softmethproj5.ui.main.MainViewModel" />
+            type="com.example.softmethproj5.ui.MainViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

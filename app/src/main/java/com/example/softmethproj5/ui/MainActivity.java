@@ -1,15 +1,11 @@
-package com.example.softmethproj5;
+package com.example.softmethproj5.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.Toast;
 
+import com.example.softmethproj5.R;
 import com.example.softmethproj5.ui.main.MainFragment;
-import com.example.softmethproj5.ui.main.MainViewModel;
 
 import java.text.DecimalFormat;
 
