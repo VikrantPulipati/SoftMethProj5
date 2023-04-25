@@ -4,13 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="viewModel"
+            type="com.example.softmethproj5.ui.MainViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.main.CoffeeView">
+        tools:context=".ui.orderCoffee.OrderCoffeeFragment">
 
         <TextView
             android:id="@+id/tvCoffeeViewFragment"
@@ -25,7 +27,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <RadioGroup
-            android:id="@+id/radioGroup2"
+            android:id="@+id/rg_cup_size"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -83,61 +85,61 @@
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/radioGroup2" />
+            app:layout_constraintTop_toBottomOf="@+id/rg_cup_size" />
 
         <CheckBox
-            android:id="@+id/checkBox8"
+            android:id="@+id/cb_irish_cream"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/irish_cream"
-            app:layout_constraintBottom_toBottomOf="@+id/checkBox7"
-            app:layout_constraintEnd_toStartOf="@+id/checkBox9"
+            app:layout_constraintBottom_toBottomOf="@+id/cb_sweet_cream"
+            app:layout_constraintEnd_toStartOf="@+id/cb_mocha"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/checkBox7"
-            app:layout_constraintTop_toTopOf="@+id/checkBox7" />
+            app:layout_constraintStart_toEndOf="@+id/cb_sweet_cream"
+            app:layout_constraintTop_toTopOf="@+id/cb_sweet_cream" />
 
         <CheckBox
-            android:id="@+id/checkBox7"
+            android:id="@+id/cb_sweet_cream"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/sweet_cream"
-            app:layout_constraintEnd_toStartOf="@+id/checkBox8"
+            app:layout_constraintEnd_toStartOf="@+id/cb_irish_cream"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
         <CheckBox
-            android:id="@+id/checkBox9"
+            android:id="@+id/cb_mocha"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:text="@string/mocha"
-            app:layout_constraintBottom_toBottomOf="@+id/checkBox8"
+            app:layout_constraintBottom_toBottomOf="@+id/cb_irish_cream"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/checkBox8"
-            app:layout_constraintTop_toTopOf="@+id/checkBox8" />
+            app:layout_constraintStart_toEndOf="@+id/cb_irish_cream"
+            app:layout_constraintTop_toTopOf="@+id/cb_irish_cream" />
 
         <CheckBox
-            android:id="@+id/checkBox11"
+            android:id="@+id/cb_caramel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/caramel"
-            app:layout_constraintBottom_toBottomOf="@+id/checkBox10"
+            app:layout_constraintBottom_toBottomOf="@+id/cb_french_vanilla"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/checkBox10"
-            app:layout_constraintTop_toTopOf="@+id/checkBox10" />
+            app:layout_constraintStart_toEndOf="@+id/cb_french_vanilla"
+            app:layout_constraintTop_toTopOf="@+id/cb_french_vanilla" />
 
         <CheckBox
-            android:id="@+id/checkBox10"
+            android:id="@+id/cb_french_vanilla"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/french_vanilla"
-            app:layout_constraintEnd_toStartOf="@+id/checkBox11"
+            app:layout_constraintEnd_toStartOf="@+id/cb_caramel"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/checkBox8" />
+            app:layout_constraintTop_toBottomOf="@+id/cb_irish_cream" />
 
         <TextView
             android:id="@+id/textView4"
@@ -145,51 +147,56 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="10dp"
-            android:text="@string/how_many_cups"
+            android:text="@string/quantity"
             android:textSize="20sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/checkBox10" />
+            app:layout_constraintTop_toBottomOf="@+id/cb_french_vanilla" />
 
         <Spinner
-            android:id="@+id/howManyCoffees"
+            android:id="@+id/sp_coffee_quantity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:minHeight="48dp"
             app:layout_constraintBottom_toBottomOf="@+id/textView4"
             app:layout_constraintStart_toEndOf="@+id/textView4"
-            app:layout_constraintTop_toTopOf="@+id/textView4" />
+            app:layout_constraintTop_toTopOf="@+id/textView4"
+            tools:ignore="SpeakableTextPresentCheck" />
 
         <Button
-            android:id="@+id/button4"
+            android:id="@+id/bt_add_coffee"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
             android:text="@string/add"
-            app:layout_constraintBottom_toBottomOf="@+id/howManyCoffees"
-            app:layout_constraintStart_toEndOf="@+id/howManyCoffees"
-            app:layout_constraintTop_toTopOf="@+id/howManyCoffees" />
+            app:layout_constraintBottom_toBottomOf="@+id/sp_coffee_quantity"
+            app:layout_constraintEnd_toEndOf="@+id/bt_add_coffee_to_order"
+            app:layout_constraintStart_toStartOf="@+id/bt_add_coffee_to_order"
+            app:layout_constraintTop_toTopOf="@+id/sp_coffee_quantity"
+            app:layout_constraintVertical_bias="1.0" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView2"
+            android:id="@+id/rv_coffee_basket"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/button6" />
+            app:layout_constraintTop_toBottomOf="@+id/bt_add_coffee_to_order" />
 
         <Button
-            android:id="@+id/button6"
+            android:id="@+id/bt_add_coffee_to_order"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
             android:text="@string/add_to_order"
             app:layout_constraintBottom_toBottomOf="@+id/textView6"
-            app:layout_constraintEnd_toEndOf="@+id/button4"
-            app:layout_constraintStart_toStartOf="@+id/button4"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/textView6"
-            app:layout_constraintVertical_bias="0.476" />
+            app:layout_constraintVertical_bias=".5" />
 
         <TextView
             android:id="@+id/textView6"
@@ -197,8 +204,9 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
-            android:text="@string/subtotal"
-            android:textSize="20dp"
+            android:text="@{String.format(@string/subtotal, viewModel.currentScreenSubtotal)}"
+            tools:text="@string/subtotal"
+            android:textSize="20sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView4" />
 

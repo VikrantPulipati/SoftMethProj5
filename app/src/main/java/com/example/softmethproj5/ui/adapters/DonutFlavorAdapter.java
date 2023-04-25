@@ -58,9 +58,7 @@ public class DonutFlavorAdapter extends RecyclerView.Adapter<DonutFlavorAdapter.
         }
 
         private void bind (Pair<String, Integer> flavor, View.OnClickListener addButtonListener) {
-            Context context = binding.getRoot().getContext();
-
-            binding.spQuantity.setAdapter(new ArrayAdapter<>(context, android.R.layout.simple_spinner_item, quantities));
+            binding.spQuantity.setAdapter(new ArrayAdapter<>(binding.getRoot().getContext(), android.R.layout.simple_spinner_item, quantities));
             binding.spQuantity.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
                 public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) { selectedQuantity = i+1; }
