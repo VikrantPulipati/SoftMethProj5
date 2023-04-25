@@ -1,5 +1,6 @@
 package com.example.softmethproj5.ui.yourOrder;
 
+import android.app.AlertDialog;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -65,7 +66,10 @@ public class YourOrderFragment extends Fragment {
 
         binding.btPlaceOrder.setOnClickListener(view1 -> {
             if (Objects.requireNonNull(viewModel.getCurrentOrder().getValue()).getItems().isEmpty()) {
-                Toast.makeText(requireContext(), "No items to order.", Toast.LENGTH_SHORT).show();
+                new AlertDialog.Builder(requireContext())
+                        .setTitle("No items to order.")
+                        .setNeutralButton(android.R.string.ok, (dialog, id) -> dialog.dismiss())
+                        .show();
                 return;
             }
             viewModel.placeOrder();
