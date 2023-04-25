@@ -2,6 +2,11 @@ package com.example.softmethproj5.models;
 
 import androidx.annotation.NonNull;
 
+/**
+ * The Donut class contains relevant information on Donut attributes such as Donut prices
+ * and flavors, as well as methods for comparing and printing Donut objects.
+ * @author Gabriel Ruszala, Vikrant Pulipati
+ */
 public class Donut extends MenuItem {
 
     public static final double YEAST_DONUT_PRICE = 1.59;
@@ -25,12 +30,24 @@ public class Donut extends MenuItem {
 
     private final String flavor;
 
+    /**
+     * Donut constructor.
+     * @param flavor the flavor of the Donut.
+     */
     public Donut (String flavor) {
         this.flavor = flavor;
     }
 
+    /**
+     * Gets the flavor of the Donut
+     * @return the flavor of the Donut
+     */
     public String getFlavor () { return this.flavor; }
 
+    /**
+     * Calculates the price of the Donut
+     * @return the price of the Donut
+     */
     @Override
     public double itemPrice() {
         if (flavor.equals(FLAVOR_CINNAMON)
@@ -47,6 +64,10 @@ public class Donut extends MenuItem {
         }
     }
 
+    /**
+     * Converts Donut object information into a String.
+     * @return a String containing info on Donut flavor.
+     */
     @NonNull
     @Override
     public String toString() {
@@ -63,6 +84,10 @@ public class Donut extends MenuItem {
         return (obj instanceof Donut) && (this.flavor.equals(((Donut)obj).getFlavor()));
     }
 
+    /**
+     * returns a computed hash code for Donut instance.
+     * @return a computed hash code for Donut instance.
+     */
     @Override
     public int hashCode() {
         int hash = 0;

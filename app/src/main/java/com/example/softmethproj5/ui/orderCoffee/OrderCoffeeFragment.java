@@ -30,9 +30,9 @@ import java.util.Objects;
 import java.util.Set;
 
 /**
- * A simple {@link Fragment} subclass.
- * Use the {@link OrderCoffeeFragment#newInstance} factory method to
- * create an instance of this fragment.
+ * The OrderCoffeeFragment class contains lifecycle callbacks for the order coffee fragment as
+ * well as methods to add functionality to the Buttons and RecyclerView of the order coffee fragment.
+ * @author Gabriel Ruszala, Vikrant Pulipati
  */
 public class OrderCoffeeFragment extends Fragment {
 
@@ -48,14 +48,21 @@ public class OrderCoffeeFragment extends Fragment {
     public OrderCoffeeFragment() { }
 
     /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @return A new instance of fragment CoffeeView.
+     * Creates a new instance of OrderCoffeeFragment.
+     * @return A new instance of OrderCoffeeFragment.
      */
-    // TODO: Rename and change types and number of parameters
     public static OrderCoffeeFragment newInstance() { return new OrderCoffeeFragment(); }
 
+    /**
+     * @param inflater The LayoutInflater object that can be used to inflate
+     * any views in the fragment,
+     * @param container If non-null, this is the parent view that the fragment's
+     * UI should be attached to.  The fragment should not add the view itself,
+     * but this can be used to generate the LayoutParams of the view.
+     * @param savedInstanceState If non-null, this fragment is being re-constructed
+     * from a previous saved state as given here.
+     * @return the root View of the fragment binding.
+     */
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -66,6 +73,11 @@ public class OrderCoffeeFragment extends Fragment {
         return binding.getRoot();
     }
 
+    /**
+     * @param view The View returned by {@link #onCreateView(LayoutInflater, ViewGroup, Bundle)}.
+     * @param savedInstanceState If non-null, this fragment is being re-constructed
+     * from a previous saved state as given here.
+     */
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -75,6 +87,10 @@ public class OrderCoffeeFragment extends Fragment {
         binding.spCoffeeQuantity.setAdapter(new ArrayAdapter<>(binding.getRoot().getContext(), android.R.layout.simple_spinner_item, quantities));
     }
 
+    /**
+     * Provides functionality for the "Add to Order" button.
+     * @return the OnClickListener function for AddToOrder that you wish to implement.
+     */
     private View.OnClickListener onAddToOrderClick () {
         return view -> {
             if (Objects.requireNonNull(viewModel.getCurrentScreenBasket().getValue()).isEmpty()) {
@@ -87,6 +103,10 @@ public class OrderCoffeeFragment extends Fragment {
         };
     }
 
+    /**
+     * Provides functionality for the "Add" button.
+     * @return the OnClickListener function for Add that you wish to implement.
+     */
     private View.OnClickListener onAddButtonClick () {
         return view -> {
             String cupSize = ((RadioButton) binding.rgCupSize.findViewById(binding.rgCupSize.getCheckedRadioButtonId())).getText().toString();
@@ -101,6 +121,9 @@ public class OrderCoffeeFragment extends Fragment {
         };
     }
 
+    /**
+     * Sets up the RecyclerView for the ordering basket at the bottom of the screen.
+     */
     private void setUpBasketRecycler () {
         binding.rvCoffeeBasket.setLayoutManager(new LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false));
         adapter = new BasketAdapter(viewModel);

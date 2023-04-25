@@ -27,9 +27,9 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- * A simple {@link Fragment} subclass.
- * Use the {@link OrderDonutsFragment#newInstance} factory method to
- * create an instance of this fragment.
+ * The OrderDonutsFragment class contains lifecycle callbacks for the order donuts fragment as
+ * well as methods to add functionality to the Buttons and RecyclerView of the order donuts fragment.
+ * @author Gabriel Ruszala, Vikrant Pulipati
  */
 public class OrderDonutsFragment extends Fragment {
 
@@ -41,18 +41,26 @@ public class OrderDonutsFragment extends Fragment {
     BasketAdapter basketAdapter;
 
     /**
-     * Required public constructor
+     * Required empty public constructor
      */
     public OrderDonutsFragment() { }
 
     /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @return A new instance of fragment OrderDonutsFragment.
+     * Creates a new instance of OrderDonutsFragment.
+     * @return A new instance of OrderDonutsFragment.
      */
     public static OrderDonutsFragment newInstance() { return new OrderDonutsFragment(); }
 
+    /**
+     * @param inflater The LayoutInflater object that can be used to inflate
+     * any views in the fragment,
+     * @param container If non-null, this is the parent view that the fragment's
+     * UI should be attached to.  The fragment should not add the view itself,
+     * but this can be used to generate the LayoutParams of the view.
+     * @param savedInstanceState If non-null, this fragment is being re-constructed
+     * from a previous saved state as given here.
+     * @return the root View of the fragment binding.
+     */
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_order_donuts, container, false);
@@ -62,6 +70,11 @@ public class OrderDonutsFragment extends Fragment {
         return binding.getRoot();
     }
 
+    /**
+     * @param view The View returned by {@link #onCreateView(LayoutInflater, ViewGroup, Bundle)}.
+     * @param savedInstanceState If non-null, this fragment is being re-constructed
+     * from a previous saved state as given here.
+     */
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -80,18 +93,27 @@ public class OrderDonutsFragment extends Fragment {
         });
     }
 
+    /**
+     * Lifecycle callback which runs when the fragment stops.
+     */
     @Override
     public void onStop() {
         super.onStop();
         viewModel.clearCurrentScreenBasket();
     }
 
+    /**
+     * Inputs all flavor options into the donut flavors RecyclerView.
+     */
     private void setUpFlavorOptions () {
         binding.rvDonutFlavorOptions.setLayoutManager(new LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false));
         donutFlavorAdapter = new DonutFlavorAdapter(getFlavorList(), viewModel);
         binding.rvDonutFlavorOptions.setAdapter(donutFlavorAdapter);
     }
 
+    /**
+     * Sets up the ordering basket RecyclerView.
+     */
     private void setUpDonutBasketRecycler () {
         binding.rvDonutBasket.setLayoutManager(new LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false));
         basketAdapter = new BasketAdapter(viewModel);
@@ -99,6 +121,10 @@ public class OrderDonutsFragment extends Fragment {
         viewModel.getCurrentScreenBasket().observe(getViewLifecycleOwner(), menuItemIntegerMap -> basketAdapter.updateItemList());
     }
 
+    /**
+     * Gets the list of donut flavors.
+     * @return a List of Pairs containing the id of each flavor and an image for each flavor.
+     */
     private List<Pair<String, Integer>> getFlavorList () {
         return List.of(
                 new Pair<>(Donut.FLAVOR_JELLY, R.drawable.flavor_jelly),

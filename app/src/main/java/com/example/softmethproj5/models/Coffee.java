@@ -4,6 +4,11 @@ import androidx.annotation.NonNull;
 
 import java.util.Set;
 
+/**
+ * The Coffee class contains relevant information on coffee attributes such as cup size
+ * and the prices of each cup size and add-in, as well as methods for printing and comparing Coffee objects.
+ * @author Gabriel Ruszala, Vikrant Pulipati
+ */
 public class Coffee extends MenuItem {
 
     public static final String CUP_SIZE_SHORT = "Short";
@@ -14,15 +19,32 @@ public class Coffee extends MenuItem {
     private final String cupSize;
     private final Set<String> addIns;
 
+    /**
+     * Coffee constructor
+     * @param cupSize the size of the Coffee
+     * @param addIns the add-ins of the Coffee
+     */
     public Coffee(String cupSize, Set<String> addIns) {
         this.cupSize = cupSize;
         this.addIns = addIns;
     }
 
+    /**
+     * Returns the cup size.
+     * @return the size of the cup.
+     */
     public String getCupSize() { return cupSize; }
 
+    /**
+     * Returns a Set of the add-ins.
+     * @return a Set of the add-ins.
+     */
     public Set<String> getAddIns() { return addIns; }
 
+    /**
+     * calculates the price of the Coffee object.
+     * @return the price of the Coffee object.
+     */
     @Override
     public double itemPrice() {
         double basePrice = 0;
@@ -58,7 +80,7 @@ public class Coffee extends MenuItem {
     }
 
     /**
-     *
+     * returns a computed hash code for Coffee instance.
      * @return a computed hash code for Coffee instance.
      */
     @Override

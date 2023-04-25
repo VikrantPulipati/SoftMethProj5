@@ -18,6 +18,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * The MainViewModel class contains data on current screen ordering baskets, current orders, store orders,
+ * and current screen subtotals. The MainViewModel class also contains methods for manipulating
+ * the ordering basket and store orders.
+ * @author Gabriel Ruszala, Vikrant Pulipati
+ */
 @SuppressWarnings("ConstantConditions")
 public class MainViewModel extends ViewModel {
 
@@ -29,23 +35,47 @@ public class MainViewModel extends ViewModel {
 
     private final MutableLiveData<Double> currentScreenSubtotal = new MutableLiveData<>(0.0);
 
+    /**
+     * Gets the current on-screen ordering basket.
+     * @return the current on-screen ordering basket.
+     */
     @NonNull
     public LiveData<Map<MenuItem, Integer>> getCurrentScreenBasket () { return currentScreenBasket; }
 
+    /**
+     * Gets the current order.
+     * @return the current order.
+     */
     @NonNull
     public LiveData<Order> getCurrentOrder () { return currentOrder; }
 
+    /**
+     * Gets the store orders.
+     * @return the store orders.
+     */
     @NonNull
     public LiveData<List<Order>> getStoreOrders () { return storeOrders; }
 
+    /**
+     * Gets the subtotal displayed on the current screen.
+     * @return the subtotal displayed on the current screen.
+     */
     @NonNull
     public LiveData<Double> getCurrentScreenSubtotal () { return currentScreenSubtotal; }
 
+    /**
+     * clears the current on-screen ordering basket.
+     */
     public void clearCurrentScreenBasket () {
         currentScreenBasket.setValue(new HashMap<>());
         calculateSubtotal();
     }
 
+    /**
+     * Adds a menuItem to the ordering basket.
+     * @param menuItem the menuItem you wish to add.
+     * @param quantity the quantity of the menuItem you wish to add.
+     */
     public void addItemToBasket (MenuItem menuItem, int quantity) {
         Map<MenuItem, Integer> basket = requireNonNull(this.currentScreenBasket.getValue());
         if (basket.containsKey(menuItem)) basket.put(menuItem, requireNonNull(basket.get(menuItem))+quantity);
@@ -54,6 +84,10 @@ public class MainViewModel extends ViewModel {
         calculateSubtotal();
     }
 
+    /**
+     * Removes a menuItem from the ordering basket.
+     * @param menuItem the menuItem you wish to remove.
+     */
     public void removeItemFromBasket (MenuItem menuItem) {
         Map<MenuItem, Integer> basket = requireNonNull(this.currentScreenBasket.getValue());
         basket.remove(menuItem);
@@ -61,6 +95,9 @@ public class MainViewModel extends ViewModel {
         calculateSubtotal();
     }
 
+    /**
+     * Calculates the subtotal of the ordering basket.
+     */
     private void calculateSubtotal () {
         Map<MenuItem, Integer> basket = requireNonNull(this.currentScreenBasket.getValue());
         double subtotal = 0;
@@ -68,6 +105,9 @@ public class MainViewModel extends ViewModel {
         this.currentScreenSubtotal.setValue(subtotal);
     }
 
+    /**
+     * Adds all the items in the current on-screen ordering basket to an Order.
+     */
     public void addCurrentScreenBasketToOrder () {
         Order order = requireNonNull(this.currentOrder.getValue());
         Map<MenuItem, Integer> currentScreenBasket = requireNonNull(this.currentScreenBasket.getValue());
@@ -77,12 +117,19 @@ public class MainViewModel extends ViewModel {
         this.currentOrder.setValue(order);
     }
 
+    /**
+     * Removes a menuItem from an Order.
+     * @param menuItem the menuItem you wish to Remove.
+     */
     public void removeFromOrder (MenuItem menuItem) {
         Order order = requireNonNull(this.currentOrder.getValue());
         order.removeItem(menuItem);
         this.currentOrder.setValue(order);
     }
 
+    /**
+     * Adds the Order to the list of StoreOrders.
+     */
     public void placeOrder () {
         List<Order> orders = requireNonNull(storeOrders.getValue());
         orders.add(currentOrder.getValue());
@@ -90,6 +137,10 @@ public class MainViewModel extends ViewModel {
         this.currentOrder.setValue(new Order());
     }
 
+    /**
+     * Removes an Order from the list of StoreOrders
+     * @param index the index of the Order you wish to remove.
+     */
     public void cancelOrder (int index) {
         List<Order> orders = requireNonNull(this.storeOrders.getValue());
         orders.remove(index);

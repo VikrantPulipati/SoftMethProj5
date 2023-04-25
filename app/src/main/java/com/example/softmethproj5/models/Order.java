@@ -14,6 +14,7 @@ import java.util.Map;
 /**
  * The Order class contains information on a user's order.
  * This includes order number, order items, and order costs.
+ * @author Gabriel Ruszala, Vikrant Pulipati
  */
 @SuppressWarnings("ConstantConditions")
 public class Order extends BaseObservable {
@@ -55,12 +56,24 @@ public class Order extends BaseObservable {
         return items;
     }
 
+    /**
+     * Gets the subtotal of the Order.
+     * @return a double signifying the subtotal of the Order.
+     */
     @Bindable
     public double getSubtotal() { return subtotal; }
 
+    /**
+     * Gets the sales tax of the Order.
+     * @return a double signifying the sales tax of the Order.
+     */
     @Bindable
     public double getSalesTax() { return salesTax; }
 
+    /**
+     * Gets the total cost of the Order.
+     * @return a double signifying the total cost of the Order.
+     */
     @Bindable
     public double getOrderTotal() { return orderTotal; }
 
@@ -76,11 +89,18 @@ public class Order extends BaseObservable {
         calculateOrderTotal();
     }
 
+    /**
+     * Removes a menuItem from the order.
+     * @param menuItem the menuItem you wish to remove.
+     */
     public void removeItem (MenuItem menuItem) {
         this.items.remove(menuItem);
         calculateOrderTotal();
     }
 
+    /**
+     * Calculates the total cost of the Order.
+     */
     private void calculateOrderTotal () {
         double sub = 0;
         for (MenuItem item : items.keySet())

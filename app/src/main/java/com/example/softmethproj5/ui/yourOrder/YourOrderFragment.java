@@ -24,9 +24,9 @@ import com.example.softmethproj5.ui.MainViewModel;
 import java.util.Objects;
 
 /**
- * A simple {@link Fragment} subclass.
- * Use the {@link YourOrderFragment#newInstance} factory method to
- * create an instance of this fragment.
+ * The YourOrderFragment class contains lifecycle callbacks for the your order fragment as
+ * well as methods to add functionality to the your order fragment.
+ * @author Gabriel Ruszala, Vikrant Pulipati
  */
 public class YourOrderFragment extends Fragment {
 
@@ -37,18 +37,26 @@ public class YourOrderFragment extends Fragment {
     YourOrderAdapter adapter;
 
     /**
-     * Required public constructor
+     * Required empty public constructor
      */
     public YourOrderFragment() { }
 
     /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @return A new instance of fragment YourOrderFragment.
+     * Creates a new instance of YourOrderFragment.
+     * @return A new instance of YourOrderFragment.
      */
     public static YourOrderFragment newInstance() { return new YourOrderFragment(); }
 
+    /**
+     * @param inflater The LayoutInflater object that can be used to inflate
+     * any views in the fragment,
+     * @param container If non-null, this is the parent view that the fragment's
+     * UI should be attached to.  The fragment should not add the view itself,
+     * but this can be used to generate the LayoutParams of the view.
+     * @param savedInstanceState If non-null, this fragment is being re-constructed
+     * from a previous saved state as given here.
+     * @return the root View of the fragment binding.
+     */
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -59,6 +67,11 @@ public class YourOrderFragment extends Fragment {
         return binding.getRoot();
     }
 
+    /**
+     * @param view The View returned by {@link #onCreateView(LayoutInflater, ViewGroup, Bundle)}.
+     * @param savedInstanceState If non-null, this fragment is being re-constructed
+     * from a previous saved state as given here.
+     */
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -81,6 +94,9 @@ public class YourOrderFragment extends Fragment {
 
     }
 
+    /**
+     * Sets up the RecyclerView containing all the items in the Order.
+     */
     private void setUpBasketRecycler () {
         binding.rvOrderItems.setLayoutManager(new LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false));
         adapter = new YourOrderAdapter(viewModel);
